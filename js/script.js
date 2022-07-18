@@ -17,3 +17,31 @@ title.addEventListener('change', (e) => {
         otherJobRole.style.display = 'none';
     }
 });
+
+/*
+    T-Shirt Info Section
+    When a theme is selected, the "Color" field is enabled
+    and it’s value is updated along with the options in the "Color" 
+    drop-down menu.
+*/
+const designSelectElement = document.getElementById('design');
+const colorSelectElement = document.getElementById('color');
+const colorOptions = colorSelectElement.children;
+colorSelectElement.disabled = true;
+
+designSelectElement.addEventListener('change', (e) =>{
+    colorSelectElement.disabled = false;
+
+        for (let i = 0; i < colorOptions.length; i++){
+            const value = e.target.value;
+            const theme = colorOptions[i].getAttribute('data-theme'); 
+
+            if (value === theme){
+                colorOptions[i].hidden = false;
+                colorOptions[i].selected = true;
+            } else {
+                colorOptions[i].hidden = true;
+                colorOptions[i].selected = false;
+            }
+        }
+});
